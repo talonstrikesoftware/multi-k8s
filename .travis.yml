@@ -1,0 +1,26 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true talonstrikesoftware/react-test npm test
+
+after_success:
+  - docker build -t talonstrikesoftware/multi-client ./client
+  - docker build -t talonstrikesoftware/multi-nginx ./nginx
+  - docker build -t talonstrikesoftware/multi-server ./server
+  - docker build -t talonstrikesoftware/multi-worker ./worker
+
+#Log in to the docker CLI
+# echo password to the stdin and then login to docker and tell it to get the password from stdin
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+
+# Take those images and push them to docker hub
+- docker push talonstrikesoftware/multi-client
+- docker push talonstrikesoftware/multi-nginx
+- docker push talonstrikesoftware/multi-server
+- docker push talonstrikesoftware/multi-worker
+
