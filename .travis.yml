@@ -24,3 +24,16 @@ after_success:
   - docker push talonstrikesoftware/multi-server
   - docker push talonstrikesoftware/multi-worker
 
+#deploy:
+#  edge: true
+#  provider: elasticbeanstalk  
+#  region: {your region from the dashboard}
+#  app: multi-docker
+#  env: MultiDocker-env
+#  bucket_name: {bucket name}
+#  bucket_path: docker-multi
+#  on:
+#    branch: master    
+#  access_key_id: $AWS_ACCESS_KEY
+#  secret_access_key: $AWS_SECRET_KEY
+
