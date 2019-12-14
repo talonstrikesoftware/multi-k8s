@@ -24,16 +24,16 @@ after_success:
   - docker push redwolf2000/multi-server
   - docker push redwolf2000/multi-worker
 
-#deploy:
-#  edge: true
-#  provider: elasticbeanstalk  
-#  region: {your region from the dashboard}
-#  app: multi-docker
-#  env: MultiDocker-env
-#  bucket_name: {bucket name}
-#  bucket_path: docker-multi
-#  on:
-#    branch: master    
-#  access_key_id: $AWS_ACCESS_KEY
-#  secret_access_key: $AWS_SECRET_KEY
+deploy:
+  edge: true
+  provider: elasticbeanstalk  
+  region: us-east-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-us-east-2-200737794724
+  bucket_path: docker-multi
+  on:
+    branch: master    
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
 
